@@ -6,13 +6,7 @@ from hand_pose.net_util import Residual
 
 class Hourglass(nn.Module, ABC):
     def __init__(self, n_repeat, n_module, n_feature):
-        """
-        代码中变量命名说明
-        high:表示高分辨率
-        down:表示下采样
-        low:表示低分辨率
-        up:表示上采样
-        """
+
         super(Hourglass, self).__init__()
         self.n_repeat = n_repeat
         self.n_module = n_module
