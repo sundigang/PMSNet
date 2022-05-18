@@ -22,7 +22,7 @@ pip install -r requirements.txt
 To evaluate my model on images, you should copy images into "PMSNet/image/input" and then run:
 
 ```eval
-python eval.py --model-file mymodel.pth
+python eval.py --model-file selected_model.pth
 ```
 evaluation results will be output to "PMSNet/image/output"
 
