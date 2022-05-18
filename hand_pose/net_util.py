@@ -4,9 +4,6 @@ import torch.nn as nn
 
 
 class ResidualFCLayer(nn.Module, ABC):
-    """
-    multi linear layers with a residual connection
-    """
 
     def __init__(self, n_channel, n_module=2, use_bn=True, use_relu=True, drop_prob=0):
         super().__init__()

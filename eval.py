@@ -12,6 +12,7 @@ import PIL.Image as Image
 import matplotlib.pyplot as plt
 import os.path as osp
 from torchvision import transforms as T
+import argparse
 
 
 class Helper:
@@ -193,7 +194,7 @@ class BaseEvaluator:
         self.use_gpu = torch.cuda.is_available()
         self.batch_size = None
         self.set_name = 'evaluation'
-        # 定义loss
+
         self.dataset = None  # MixedHeatmapDataset(self.set_name)
         self.model = None
 
@@ -231,8 +232,30 @@ class PoseEvaluator(BaseEvaluator):
             return uv, z, out
 
 
+def get_args():
+    parser = argparse.ArgumentParser(description="3D Hand Pose Estimation")
+    parser.add_argument(
+        "--model",
+        default="PMS_on_inter_frei.pth",
+        metavar="FILE",
+        help="pre-trained model",
+    )
+    parser.add_argument(
+        "opts",
+        help="Modify config options using the command-line",
+        default=None,
+        nargs=argparse.REMAINDER,
+    )
+
+    args = parser.parse_args()
+    return args
+
+
 def test():
-    model_dict_file = f'model/Net3DPoseManoF1_on_inter_frei.pth'
+    args = get_args()
+
+    # model_dict_file = f'model/PMS_on_inter_frei_stb.pth'
+    model_dict_file = f'model/{args.model}'
     evaluator = PoseEvaluator(model_dict_file)
     pattern = r'image/input/*.*'
 
